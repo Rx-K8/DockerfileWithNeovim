@@ -90,6 +90,6 @@ fi
 
 mkdir -p "${share_dir}"
 
-# docker create -it --name="${container_name}" --gpus=all --ipc=host -v "${share_dir}":/home "${image_name}"
-docker create -it --name="${container_name}" --gpus=all --ipc=host -v "${share_dir}":/share "${image_name}"
+docker create -it --name="${container_name}" --gpus=all --ipc=host -v "${share_dir}":/home "${image_name}"
+# docker create -it --name="${container_name}" --gpus=all --ipc=host -v "${share_dir}":/share "${image_name}"
 exit 0
