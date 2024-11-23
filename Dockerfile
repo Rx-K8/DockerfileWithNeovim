@@ -12,6 +12,8 @@ RUN { \
   echo 'export LANG=ja_JP.UTF-8'; \
   echo "export EDITOR='nvim'"; \
   echo 'export SHELL=/bin/bash'; \
+  echo "export export CUDA_VISIBLE_DEVICES='0'"; \
+  echo 'export PATH="${PATH}:${HOME}/.local/bin"'; \
   echo '# Load git completion'; \
   echo 'if [ -f "${HOME}/.git-completion.sh" ]; then'; \
   echo '    source "${HOME}/.git-completion.sh"'; \
@@ -50,14 +52,15 @@ RUN apt-get update && apt-get install -y  \
 RUN git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf
 
 RUN { \
-        echo '. $HOME/.asdf/asdf.sh'; \
-        echo '. $HOME/.asdf/completions/asdf.bash'; \
-        } >> ${HOME}/.bashrc
+  echo '. $HOME/.asdf/asdf.sh'; \
+  echo '. $HOME/.asdf/completions/asdf.bash'; \
+  echo '. $HOME/.asdf/plugins/java/set-java-home.bash'; \
+} >> ${HOME}/.bashrc
 
 RUN { \
-        source ${HOME}/.asdf/asdf.sh; \
-        asdf update; \
-        }
+	source ${HOME}/.asdf/asdf.sh; \
+	asdf update; \
+	}
 
 RUN { \
   source ${HOME}/.asdf/asdf.sh; \
@@ -70,6 +73,15 @@ RUN { \
   asdf install nodejs latest; \
   asdf global nodejs latest; \
   asdf reshim nodejs; \
+  asdf plugin-add java https://github.com/halcyon/asdf-java.git; \
+  asdf install java oracle-21.0.2; \
+  asdf global java oracle-21.0.2; \
+  asdf reshim java; \
+}
+
+RUN { \
+  source ${HOME}/.asdf/asdf.sh; \
+  curl -sSL https://install.python-poetry.org | python -; \
 }
 
 RUN { \
