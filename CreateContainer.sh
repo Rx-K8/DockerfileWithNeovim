@@ -79,7 +79,7 @@ fi
 # parameters
 base_image=${CUDA_VERSIONS["${cuda_version}"]}
 repository_name='miyalab/cuda'
-tag_name="${base_image##*:}"
+tag_name="${base_image##*:}-keito_custom"
 image_name="${repository_name}:${tag_name}"
 
 # Make sure that docker image exists already.
