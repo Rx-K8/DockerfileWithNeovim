@@ -12,7 +12,7 @@ RUN { \
   echo 'export LANG=ja_JP.UTF-8'; \
   echo "export EDITOR='nvim'"; \
   echo 'export SHELL=/bin/bash'; \
-  echo "export export CUDA_VISIBLE_DEVICES='0'"; \
+  echo "export CUDA_VISIBLE_DEVICES='0'"; \
   echo 'export PATH="${PATH}:${HOME}/.local/bin"'; \
   echo '# Load git completion'; \
   echo 'if [ -f "${HOME}/.git-completion.sh" ]; then'; \
